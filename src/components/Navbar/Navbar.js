@@ -1,17 +1,18 @@
 import React from "react";
 import s from './Navbar.module.css';
+import {NavLink} from "react-router-dom";
 
 const Navbar = () => {
     return <nav className={s.nav}>
-        <div className={s.item}>
-            <a href="/profile">
+        <div>
+            <NavLink to="/profile"  className={ navData => navData.isActive ? s.active : s.item }>
                 Profile
-            </a>
+            </NavLink>
         </div>
-        <div className={s.item}>
-            <a href="/dialogs">
-                Messages
-            </a>
+        <div>
+            <NavLink to="/dialogs" className={ navData => navData.isActive ? s.active : s.item }>
+                Dialogs
+            </NavLink>
         </div>
         <div className={s.item}>
             <a>
