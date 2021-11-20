@@ -7,7 +7,7 @@ const Post = (props) => {
             src='https://st2.depositphotos.com/2668729/6278/v/600/depositphotos_62783141-stock-illustration-male-avatar-icon-on-white.jpg'/>
         {props.message}
         <div>
-            <span> like </span>
+            <span> like {props.likesCount}</span>
         </div>
 
     </div>
