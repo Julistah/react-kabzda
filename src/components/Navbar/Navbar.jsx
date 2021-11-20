@@ -4,12 +4,12 @@ import s from './Navbar.module.css';
 const Navbar = () => {
     return <nav className={s.nav}>
         <div className={s.item}>
-            <a>
+            <a href="/profile">
                 Profile
             </a>
         </div>
         <div className={s.item}>
-            <a>
+            <a href="/dialogs">
                 Messages
             </a>
         </div>
