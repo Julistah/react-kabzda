@@ -22,16 +22,29 @@ const Message = (props) => {
 }
 
 const Dialogs = (props) => {
+    let dialogsData = [
+        {id: '1', name: 'Dimych'}, //id should be in quotes, otherwise routing won't work
+        {id: '2', name: 'Alla'},
+        {id: '3', name: 'Vova'},
+        {id: '4', name: 'Anyone'}
+    ]
+
+    let messagesData = [
+        {id: 1, message: 'Hello'},
+        {id: 2, message: 'How are you'},
+        {id: 3, message: 'Hello world)))'},
+    ]
+
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
-                <DialogItem name="Dimych" id="1"/>
-                <DialogItem name="Alla" id="2"/>
-                <DialogItem name="Vova" id="3"/>
-                <DialogItem name="Anyone" id="4"/>
+                <DialogItem name={dialogsData[0].name} id={dialogsData[0].id}/>
+                <DialogItem name={dialogsData[1].name} id={dialogsData[1].id}/>
+                <DialogItem name={dialogsData[2].name} id={dialogsData[2].id}/>
+                <DialogItem name={dialogsData[3].name} id={dialogsData[3].id}/>
             </div>
             <div className={s.messages}>
-                <Message message="Hello"/>
+                <Message message={messagesData[0].message}/>
                 <Message message="How are you"/>
                 <Message message="Hello world)))"/>
             </div>
