@@ -5,23 +5,10 @@ import DialogItem from "./DialogItem/DialogItem";
 
 const Dialogs = (props) => {
 
-    let dialogs = [
-        {id: '1', name: 'Dimych'}, //id should be in quotes, otherwise routing won't work
-        {id: '2', name: 'Alla'},
-        {id: '3', name: 'Vova'},
-        {id: '4', name: 'Anyone'}
-    ]
-
-    let messages = [
-        {id: 1, message: 'Hello'},
-        {id: 2, message: 'How are you'},
-        {id: 3, message: 'Hello world)))'},
-    ]
-
-    let dialogsElements = dialogs
+    let dialogsElements = props.dialogs
         .map(d => <DialogItem name={d.name} id={d.id}/>);
 
-    let messagesElements = messages
+    let messagesElements = props.messages
         .map(m => <Message message={m.message}/>);
 
     return (
