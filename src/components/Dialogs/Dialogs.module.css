@@ -15,10 +15,23 @@
 
 }
 
+.avatar{
+    width: 40px;
+    border-radius: 30px;
+}
+
 .messages{
     padding: 10px;
 }
 
 .message{
 
+}
+
+.left{
+    text-align: left;
+}
+
+.right{
+    text-align: right;
 }

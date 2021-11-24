@@ -4,31 +4,15 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
-
-let posts = [
-    {id: 1, post: 'Hi, how are you', likesCount: 12},
-    {id: 2, post: 'Hi, First post', likesCount: 11},
-]
-
-let dialogs = [
-    {id: '1', name: 'Dimych'}, //id should be in quotes, otherwise routing won't work
-    {id: '2', name: 'Alla'},
-    {id: '3', name: 'Vova'},
-    {id: '4', name: 'Anyone'}
-]
-
-let messages = [
-    {id: 1, message: 'Hello'},
-    {id: 2, message: 'How are you'},
-    {id: 3, message: 'Hello world)))'},
-]
+import state from "./redux/state";
 
 ReactDOM.render(
     <React.StrictMode>
         <BrowserRouter>
-            <App posts={posts}
-            messages={messages}
-            dialogs={dialogs}/>
+            <App posts={state.profilePage.posts}
+            messages={state.dialogsPage.messages}
+            dialogs={state.dialogsPage.dialogs}
+            friends={state.friendsPage.friends}/>
         </BrowserRouter>
     </React.StrictMode>,
     document.getElementById('root')
