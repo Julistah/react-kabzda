@@ -16,9 +16,8 @@ let rerenderEntireTree = (state) => {
                      dialogs={store.getState().dialogsPage.dialogs}
                      friends={store.getState().friendsPage.friends}
                      newPostText={store.getState().profilePage.newPostText}
-                     addPost={store.addPost.bind(store)}
-                     updateNewPostText={store.updateNewPostText.bind(store)}/>
-                //bind -чтоб в MyPosts.jsx в addPost props.addPost(); чтоб эдд пост имел нормальный this (37)
+                     dispatch={store.dispatch.bind(store)}/>
+                {/*bind -чтоб в MyPosts.jsx в addPost props.addPost(); чтоб эдд пост имел нормальный this (37)*/}
             </BrowserRouter>
         </React.StrictMode>,
         document.getElementById('root')
