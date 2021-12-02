@@ -5,20 +5,21 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import {BrowserRouter} from "react-router-dom";
+import StoreContext, {Provider} from "./StoreContext";
 
 
 let rerenderEntireTree = (state) => {
     ReactDOM.render(
         <React.StrictMode>
             <BrowserRouter>
-                <App posts={store.getState().profilePage.posts}
-                     messages={store.getState().dialogsPage.messages}
-                     dialogs={store.getState().dialogsPage.dialogs}
-                     friends={store.getState().friendsPage.friends}
-                     newPostText={store.getState().profilePage.newPostText}
-                     dispatch={store.dispatch.bind(store)}
-                     store={store}
-                />
+                <Provider store={store}>
+                    <App
+                        friends={store.getState().friendsPage.friends}
+                        // dispatch={store.dispatch.bind(store)}
+                        // store={store}
+                    />
+                </Provider>
+
                 {/*bind -чтоб в MyPosts.jsx в addPost props.addPost(); чтоб эдд пост имел нормальный this (37)*/}
             </BrowserRouter>
         </React.StrictMode>,
@@ -29,8 +30,8 @@ let rerenderEntireTree = (state) => {
 
 rerenderEntireTree(store.getState());
 
-store.subscribe(() =>{
-    let state = store.getState();
-    rerenderEntireTree();
+store.subscribe(() => {
+        let state = store.getState();
+        rerenderEntireTree();
     }
 );
