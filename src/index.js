@@ -5,26 +5,24 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import {BrowserRouter} from "react-router-dom";
-import StoreContext, {Provider} from "./StoreContext";
-
+import {Provider} from "react-redux";
 
 let rerenderEntireTree = (state) => {
     ReactDOM.render(
-        <React.StrictMode>
-            <BrowserRouter>
-                <Provider store={store}>
-                    <App
-                        friends={store.getState().friendsPage.friends}
-                        // dispatch={store.dispatch.bind(store)}
-                        // store={store}
-                    />
-                </Provider>
+        <BrowserRouter>
+            <Provider store={store}>
+                <App
+                    friends={store.getState().friendsPage.friends}
+                    // dispatch={store.dispatch.bind(store)}
+                    // store={store}
+                />
+            </Provider>
 
-                {/*bind -чтоб в MyPosts.jsx в addPost props.addPost(); чтоб эдд пост имел нормальный this (37)*/}
-            </BrowserRouter>
-        </React.StrictMode>,
-        document.getElementById('root')
-    );
+            {/*bind -чтоб в MyPosts.jsx в addPost props.addPost(); чтоб эдд пост имел нормальный this (37)*/}
+        </BrowserRouter>,
+    document.getElementById('root')
+)
+    ;
 }
 
 
