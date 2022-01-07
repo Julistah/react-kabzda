@@ -5,9 +5,7 @@ import userPhoto from '../../assets/images/anon.jpg'
 
 class Users extends React.Component {
 
-    constructor(props) {
-        super(props);
-        //alert('new');
+    componentDidMount() {
         axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
             this.props.setUsers(response.data.items)
         })
@@ -22,7 +20,7 @@ class Users extends React.Component {
                     <span>
                         <div>
                             <img src={u.photos.small != null ? u.photos.small : userPhoto}
-                                 className={styles.userPhoto}/>
+                                 className={styles.userPhoto} alt='image'/>
                         </div>
                         <div>
                             {u.followed
