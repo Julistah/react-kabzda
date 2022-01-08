@@ -15,8 +15,11 @@ const App = (props) => {
             <Navbar friends={props.friends}/>
             <div className='app-wrapper-content'>
                 <Routes>
-                    <Route path='/profile/*'
-                           element={ <ProfileContainer/>}/>
+                    <Route path='/profile'>
+                        {/*because in react-router-dom there are no optional parameters*/}
+                        <Route path=':userId' element={ <ProfileContainer/>}/>
+                        <Route path='' element={ <ProfileContainer/>}/>
+                    </Route>
                     <Route path='/dialogs/*'
                            element={<DialogsContainer/>}/>
                     <Route path='/users/*'
