@@ -17,11 +17,11 @@ ReactDOM.render(
                 // store={store}
             />
         </Provider>
-
-        {/*bind -чтоб в MyPosts.jsx в addPost props.addPost(); чтоб эдд пост имел нормальный this (37)*/}
     </BrowserRouter>,
     document.getElementById('root')
 )
+
+
 
 
 

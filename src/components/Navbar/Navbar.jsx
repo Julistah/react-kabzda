@@ -6,21 +6,21 @@ import Friends from "./Friends/Friends";
 const Navbar = (props) => {
     return <nav className={s.nav}>
         <div>
-            <NavLink to="/profile"  className={ navData => navData.isActive ? s.active : s.item }>
+            <NavLink to='/profile' className={navData => navData.isActive ? s.active : s.item}>
                 Profile
             </NavLink>
         </div>
         <div>
-            <NavLink to="/dialogs" className={ navData => navData.isActive ? s.active : s.item }>
+            <NavLink to='/dialogs' className={navData => navData.isActive ? s.active : s.item}>
                 Dialogs
             </NavLink>
         </div>
         <div>
-            <NavLink to="/users" className={ navData => navData.isActive ? s.active : s.item }>
+            <NavLink to='/users' className={navData => navData.isActive ? s.active : s.item}>
                 Users
             </NavLink>
         </div>
-        <div className={s.item}>
+        {/*<div className={s.item}>
             <a>
                 News
             </a>
@@ -34,7 +34,7 @@ const Navbar = (props) => {
             <a>
                 Settings
             </a>
-        </div>
+        </div>*/}
         <div>
             <h2 className={s.item}>
                 Friends
