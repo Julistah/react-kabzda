@@ -54,7 +54,8 @@ let Users = (props) => {
                                     axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
                                         withCredentials: true,
                                         headers: {
-                                            "API-KEY" : "fdbc3b99-36c5-4384-b45c-13fd00bdc943"                                        }
+                                            "API-KEY" : "fdbc3b99-36c5-4384-b45c-13fd00bdc943"
+                                        }
                                     })
                                         .then(response => {
                                             if (response.data.resultCode === 0) {
