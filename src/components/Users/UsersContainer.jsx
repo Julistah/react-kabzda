@@ -72,6 +72,6 @@ let mapDispatchToProps = (dispatch) => {
 */
 
 export default compose(
-    withAuthRedirect,
+    //withAuthRedirect,
     connect(mapStateToProps, {follow, unfollow, toggleIsFollowingProgress, getUsers })
 )(UsersContainer)
