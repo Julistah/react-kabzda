@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "./Header";
 import {
-    getAuthUserData,
+    getAuthUserData, logout,
     toggleIsFetching,
 } from "../../redux/auth-reducer";
 import {connect} from "react-redux";
@@ -27,7 +27,6 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, {
-    getAuthUserData,
-    toggleIsFetching,
-    getUserProfile
+    getAuthUserData, toggleIsFetching, getUserProfile,
+    logout
 })(HeaderContainer);
