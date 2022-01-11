@@ -7,11 +7,11 @@ class ProfileStatus extends React.Component {
         status: this.props.status
     }
 
-    toggleEditMode() {
-        this.setState({
-            editMode: !this.state.editMode
-        })
-    }
+    // toggleEditMode() {
+    //     this.setState({
+    //         editMode: !this.state.editMode
+    //     })
+    // }
 
     activateEditMode = () => {
         this.setState({
@@ -31,6 +31,15 @@ class ProfileStatus extends React.Component {
             status: e.currentTarget.value
         });
     }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.status !== this.props.status) {
+            this.setState({
+                status: this.props.status
+            });
+        }
+    }
+
 
     render() {
         return (
