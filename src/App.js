@@ -1,19 +1,22 @@
 import React from "react";
-import './App.css';
-import Navbar from "./components/Navbar/Navbar";
-import UsersContainer from "./components/Users/UsersContainer";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import {Routes, Route, BrowserRouter} from "react-router-dom";
-import ProfileContainer from "./components/Profile/ProfileContainer";
-import HeaderContainer from "./components/Header/HeaderContainer";
-import Login from "./components/Login/Login";
 import {connect, Provider} from "react-redux";
-import withRouter from "./components/common/withRouter/withRouter";
+import store from "./redux/redux-store"
 import {compose} from "redux";
 import {initialiseApp} from "./redux/app-reducer";
+import withRouter from "./components/common/withRouter/withRouter";
 import Preloader from "./components/common/Preloader/Preloader";
-import store from "./redux/redux-store";
+import Navbar from "./components/Navbar/Navbar";
+import UsersContainer from "./components/Users/UsersContainer";
+import HeaderContainer from "./components/Header/HeaderContainer";
+import './App.css';
 
+//import DialogsContainer from "./components/Dialogs/DialogsContainer";
+const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
+//import ProfileContainer from "./components/Profile/ProfileContainer";
+const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
+//import Login from "./components/Login/Login";
+const Login = React.lazy(() => import('./components/Login/Login'));
 
 class App extends React.Component {
     componentDidMount() {
@@ -30,24 +33,25 @@ class App extends React.Component {
                 <HeaderContainer/>
                 <Navbar friends={this.props.friends}/>
                 <div className='app-wrapper-content'>
-                    <Routes>
-                        <Route path='/profile'>
-                            {/*because in react-router-dom there are no optional parameters*/}
-                            <Route path=':userId' element={<ProfileContainer/>}/>
-                            <Route path='' element={<ProfileContainer/>}/>
-                        </Route>
+                    <React.Suspense fallback={<Preloader/>}>
+                        <Routes>
+                            <Route path='/profile'>
+                                {/*because in react-router-dom there are no optional parameters*/}
+                                <Route path=':userId' element={<ProfileContainer/>}/>
+                                <Route path='' element={<ProfileContainer/>}/>
+                            </Route>
 
-                        <Route path='/dialogs/*'
-                               element={<DialogsContainer/>}/>
+                            <Route path='/dialogs/*'
+                                   element={<DialogsContainer/>}/>
 
-                        <Route path='/users/*'
-                               element={<UsersContainer/>}/>
+                            <Route path='/users/*'
+                                   element={<UsersContainer/>}/>
 
-                        <Route path='/login/*'
-                               element={<Login/>}/>
+                            <Route path='/login/*'
+                                   element={<Login/>}/>
 
-                    </Routes>
-
+                        </Routes>
+                    </React.Suspense>
                 </div>
             </div>
         );
