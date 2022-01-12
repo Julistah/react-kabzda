@@ -3,15 +3,16 @@ import './App.css';
 import Navbar from "./components/Navbar/Navbar";
 import UsersContainer from "./components/Users/UsersContainer";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import {Routes, Route} from "react-router-dom";
+import {Routes, Route, BrowserRouter} from "react-router-dom";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
-import {connect} from "react-redux";
+import {connect, Provider} from "react-redux";
 import withRouter from "./components/common/withRouter/withRouter";
 import {compose} from "redux";
 import {initialiseApp} from "./redux/app-reducer";
 import Preloader from "./components/common/Preloader/Preloader";
+import store from "./redux/redux-store";
 
 
 class App extends React.Component {
@@ -57,7 +58,23 @@ const mapStateToProps = (state) => ({
     initialised: state.app.initialised
 })
 
-export default compose(
+let AppContainer = compose(
     withRouter,
     connect(mapStateToProps, {initialiseApp})
 )(App);
+
+const MainApp = () => {
+    return(
+        <BrowserRouter>
+            <Provider store={store}>
+                <AppContainer
+                    friends={store.getState().friendsPage.friends}
+                    // dispatch={store.dispatch.bind(store)}
+                    // store={store}
+                />
+            </Provider>
+        </BrowserRouter>
+    )
+}
+
+export default MainApp;
