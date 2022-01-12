@@ -4,8 +4,10 @@ import Post from "./Post/Post";
 import AddNewPostForm from "../ProfileForms/AddNewPostForm/AddNewPostForm"
 
 const MyPosts = React.memo((props) => {
-        let postsElement = props.posts
-            .map(p => <Post message={p.post} likesCount={p.likesCount}/>)
+        let postsElement =
+            [...props.posts]
+                .reverse()
+                .map(p => <Post message={p.post} likesCount={p.likesCount}/>)
 
         let onAddPost = (values) => {
             props.addPost(values.newPostText);
