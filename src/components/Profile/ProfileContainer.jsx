@@ -1,36 +1,44 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
+import {Navigate} from "react-router-dom";
 import Profile from "./Profile";
 import {connect} from "react-redux";
 import withRouter from "../common/withRouter/withRouter";
-import {getStatus, getUserProfile, updateStatus} from "../../redux/profile-reducer";
+import {getStatus, getUserProfile, savePhoto, updateStatus} from "../../redux/profile-reducer";
 import {compose} from "redux";
 
-class ProfileContainer extends React.Component {
+const ProfileContainer = (props) => {
 
-    componentDidMount() {
-        let userId = this.props.router.params.userId
+    let [needToLogin, setNeedToLogin] = useState(false);
+
+    useEffect(() => {
+        let userId = props.router.params.userId
         if (!userId) {
-            userId = this.props.authorisedUserId;
+            userId = props.authorisedUserId;
             if (!userId) {
                 //does not work
-                //this.props.router.navigate('/login');
-                return;
+                //does not work x2
+                setNeedToLogin(true);
+                return
             }
         }
-        this.props.getUserProfile(userId);
-        this.props.getStatus(userId);
-    }
+        setNeedToLogin(false);
+        props.getUserProfile(userId);
+        props.getStatus(userId);
 
-    render() {
+    }, [props.router.params.userId]);
 
-        return (
-            <Profile {...this.props}
-                     profile={this.props.profile}
-                     status={this.props.status}
-                     updateStatus={this.props.updateStatus}/>
-        )
-    }
-}
+    if (needToLogin) return <Navigate to={"/login"}/>;
+
+    return (
+        <Profile {...props}
+                 isOwner={!props.router.params.userId}
+                 profile={props.profile}
+                 status={props.status}
+                 updateStatus={props.updateStatus}
+                 savePhoto={props.savePhoto}
+        />
+    )
+};
 
 let mapStateToProps = (state) => ({
     profile: state.profilePage.profile,
@@ -41,6 +49,6 @@ let mapStateToProps = (state) => ({
 
 export default compose(
     withRouter,
-    connect(mapStateToProps, {getUserProfile, getStatus, updateStatus}),
+    connect(mapStateToProps, {getUserProfile, getStatus, updateStatus, savePhoto}),
     //withAuthRedirect
 )(ProfileContainer);
