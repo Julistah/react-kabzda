@@ -1,5 +1,5 @@
 import React from "react";
-import {Routes, Route, BrowserRouter} from "react-router-dom";
+import {Routes, Route, BrowserRouter, Navigate} from "react-router-dom";
 import {connect, Provider} from "react-redux";
 import store from "./redux/redux-store"
 import {compose} from "redux";
@@ -10,6 +10,7 @@ import Navbar from "./components/Navbar/Navbar";
 import UsersContainer from "./components/Users/UsersContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import './App.css';
+import * as PropTypes from "prop-types";
 
 //import DialogsContainer from "./components/Dialogs/DialogsContainer";
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
@@ -18,9 +19,22 @@ const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileCo
 //import Login from "./components/Login/Login";
 const Login = React.lazy(() => import('./components/Login/Login'));
 
+
+Navigate.propTypes = {to: PropTypes.string};
+
 class App extends React.Component {
+
+    catchAllUnhandledErrors = (reason, promiseRejectionEvent) => {
+        alert("Some error occurred");
+    }
+
     componentDidMount() {
-        this.props.initialiseApp()
+        this.props.initialiseApp();
+        window.addEventListener("unhandledrejection", this.catchAllUnhandledErrors);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener("unhandledrejection", this.catchAllUnhandledErrors);
     }
 
     render() {
@@ -50,6 +64,8 @@ class App extends React.Component {
                             <Route path='/login/*'
                                    element={<Login/>}/>
 
+                            <Route path='*'
+                                   element={<Navigate to={"/profile"}/>}/>
                         </Routes>
                     </React.Suspense>
                 </div>

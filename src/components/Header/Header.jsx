@@ -9,7 +9,6 @@ const Header = (props) => {
             src={logo}
             alt='logo'
         />
-
         <div className={s.loginBlock}>
             { props.isAuth
                 ? <div>{props.login} - <button className="btn btn-dark" onClick={props.logout}>Log Out</button></div>

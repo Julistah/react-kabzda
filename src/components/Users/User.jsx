@@ -3,10 +3,10 @@ import styles from "./users.module.css";
 import userPhoto from "../../assets/images/anon.jpg";
 import {NavLink} from "react-router-dom";
 
-let User = ({user, followingInProgress, unfollow, follow, }) => {
+let User = ({user, followingInProgress, unfollow, follow,}) => {
     return (
         <div>
-            <div key={user.id}>
+            <div key={user.id} className={styles.userBlock}>
                     <span>
                         <div>
                             <NavLink to={'/profile/' + user.id}>
@@ -15,37 +15,27 @@ let User = ({user, followingInProgress, unfollow, follow, }) => {
                             </NavLink>
                         </div>
                         <div>
+                            {user.name}
+                        </div>
+                        <div>
+                            {user.status}
+                        </div>
+                        <div>
                             {
                                 user.followed
-                                    ? <button disabled={followingInProgress.some(id => id === user.id)}
+                                    ? <button className={"btn btn-dark"}
+                                              disabled={followingInProgress.some(id => id === user.id)}
                                               onClick={() => {
                                                   unfollow(user.id)
                                               }}>
                                         Unfollow</button>
-                                    : <button disabled={followingInProgress.some(id => id === user.id)}
+                                    : <button className={"btn btn-dark"}
+                                              disabled={followingInProgress.some(id => id === user.id)}
                                               onClick={() => {
                                                   follow(user.id);
                                               }}>
                                         Follow</button>}
                         </div>
-                    </span>
-                <span>
-                        <span>
-                            <div>
-                                {user.name}
-                            </div>
-                            <div>
-                                {user.status}
-                            </div>
-                        </span>
-                        <span>
-                            <div>
-                                {"u.location.country"}
-                            </div>
-                            <div>
-                                {"u.location.city"}
-                            </div>
-                        </span>
                     </span>
             </div>
         </div>

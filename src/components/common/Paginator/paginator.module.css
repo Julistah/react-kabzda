@@ -4,10 +4,17 @@
 
 .pageNumber {
     padding: 2px;
-    border: 1px solid purple;
+    border: 1px black;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 .pageNumber.selectedPage {
     font-weight: bold;
-    border-color: black;
+    border: 1px dashed #56766e;
+}
+
+.button {
+    margin-left: 10px;
+    margin-right: 10px;
 }

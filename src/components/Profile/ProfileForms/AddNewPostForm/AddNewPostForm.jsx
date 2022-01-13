@@ -12,7 +12,7 @@ const AddNewPostForm = (props) => {
                        name={"newPostText"} placeholder={"Post message"}/>
             </div>
             <div>
-                <button>Add post</button>
+                <button className={"btn btn-dark"}>Add post</button>
             </div>
         </form>
     )

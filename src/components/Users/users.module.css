@@ -1,5 +1,22 @@
+.usersPage {
+    display: flex;
+    flex-wrap: wrap;
+    flex-basis: content;
+    justify-content: space-evenly;
+}
+
 .userPhoto{
     width: 100px;
     height: 100px;
 }
 
+.userBlock {
+    padding-left: 10px;
+    padding-bottom: 30px;
+    animation: ease-in 1s;
+}
+
+.userBlock button {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}

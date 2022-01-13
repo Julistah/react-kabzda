@@ -15,7 +15,7 @@ const MyPosts = React.memo((props) => {
 
         return (
             <div className={s.postsBlock}>
-                <h3>my posts</h3>
+                <b>My posts:</b>
                 <AddNewPostForm onSubmit={onAddPost}/>
                 <div className={s.posts}>
                     {postsElement}
